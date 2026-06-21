@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMD Gaming Technologies Release Notes Tracker</title>
+    
+    <!-- Google Fonts for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Link to external styling -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <!-- Top glowing strip -->
+    <div class="glow-strip"></div>
+
+    <header class="app-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <span class="brand-badge">AMD RADEON™</span>
+                <h1 class="main-title">Gaming Tech Release Notes</h1>
+                <p class="subtitle font-mono">Scraping official GPUOpen updates & engineering release logs</p>
+            </div>
+            <div class="actions-area">
+                <div class="status-indicator">
+                    <span class="status-dot green"></span>
+                    <span id="sync-status" class="status-text font-mono">Synced</span>
+                </div>
+                
+                <!-- The Batsign Refresh Button -->
+                <button id="refresh-btn" class="refresh-button" aria-label="Refresh Release Notes">
+                    <div class="batsign-projector"></div>
+                    <svg class="batsign-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12,3.5 C11.2,4.8 9.5,6.5 7.5,6.5 C6,6.5 5.5,5.5 4,5.5 C2.5,5.5 1.5,7.5 2,9.5 C2.5,11.5 4,13 6.5,13.5 C8.5,14 11,13 12,11.5 C13,13 15.5,14 17.5,13.5 C20,13 21.5,11.5 22,9.5 C22.5,7.5 21.5,5.5 20,5.5 C18.5,5.5 18,6.5 16.5,6.5 C14.5,6.5 12.8,4.8 12,3.5 Z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="feed-controls">
+            <div class="filter-info font-mono">
+                Showing: <span id="item-count">0</span> updates found
+            </div>
+            <div class="selection-help">
+                <span class="info-icon">💡</span> Click any card or check the box to select it for Tweeting.
+            </div>
+        </div>
+
+        <!-- Release Notes Cards Grid -->
+        <div id="notes-grid" class="notes-grid">
+            <!-- Loading Skeleton Cards -->
+            <div class="skeleton-card">
+                <div class="skeleton-image"></div>
+                <div class="skeleton-body">
+                    <div class="skeleton-badge"></div>
+                    <div class="skeleton-title"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                </div>
+            </div>
+            <div class="skeleton-card">
+                <div class="skeleton-image"></div>
+                <div class="skeleton-body">
+                    <div class="skeleton-badge"></div>
+                    <div class="skeleton-title"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                </div>
+            </div>
+            <div class="skeleton-card">
+                <div class="skeleton-image"></div>
+                <div class="skeleton-body">
+                    <div class="skeleton-badge"></div>
+                    <div class="skeleton-title"></div>
+                    <div class="skeleton-text"></div>
+                    <div class="skeleton-text short"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Compose Tweet Drawer -->
+    <div id="tweet-drawer" class="tweet-drawer">
+        <div class="drawer-container">
+            <div class="drawer-header">
+                <div class="drawer-title">
+                    <span class="selection-count-badge font-mono" id="selection-count">0</span>
+                    <span class="drawer-heading">Release Updates Selected</span>
+                </div>
+                <button id="clear-selection-btn" class="text-btn font-mono">Clear Selection</button>
+            </div>
+            
+            <div class="drawer-body">
+                <div class="tweet-composer-wrapper">
+                    <label for="tweet-textarea" class="visually-hidden">Tweet content</label>
+                    <textarea id="tweet-textarea" class="tweet-textarea" placeholder="Compose your tweet..."></textarea>
+                    
+                    <div class="composer-footer">
+                        <div class="char-counter font-mono" id="char-counter">
+                            <span id="char-used">0</span> / 280
+                        </div>
+                        
+                        <button id="tweet-btn" class="tweet-submit-btn">
+                            <svg class="twitter-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="currentColor"/>
+                            </svg>
+                            <span>Share on X</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast">
+        <span id="toast-message">Notes refreshed successfully!</span>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
