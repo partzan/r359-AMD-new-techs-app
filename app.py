@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, send_from_directory
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime
@@ -116,6 +116,15 @@ def get_news():
             "status": "error",
             "message": f"Failed to fetch release notes: {str(e)}"
         }), 500
+
+@app.route('/download-guide')
+def download_guide():
+    try:
+        from generate_pdf import main as generate_pdf_func
+        generate_pdf_func()
+    except Exception as e:
+        print(f"Error generating PDF: {e}")
+    return send_from_directory('static', 'guide.pdf', as_attachment=True, download_name='Git_vs_GitHub_Guide.pdf')
 
 if __name__ == '__main__':
     # Running locally on port 5000

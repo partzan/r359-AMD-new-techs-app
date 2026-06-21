@@ -25,6 +25,17 @@
                 <p class="subtitle font-mono">Scraping official GPUOpen updates & engineering release logs</p>
             </div>
             <div class="actions-area">
+                <a href="/download-guide" class="download-guide-btn font-mono" title="Download Git & GitHub Guide PDF">
+                    <svg class="pdf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    <span>Git Guide PDF</span>
+                </a>
+
                 <div class="status-indicator">
                     <span class="status-dot green"></span>
                     <span id="sync-status" class="status-text font-mono">Synced</span>
@@ -42,12 +53,29 @@
     </header>
 
     <main class="main-content">
+        <!-- Cache Warning Banner -->
+        <div id="cache-warning-banner" class="cache-warning font-mono" style="display: none;">
+            <span class="warning-icon">⚠️</span> 
+            <span>Showing cached release notes (offline fallback). Last synced: <span id="cache-time">N/A</span></span>
+        </div>
+
         <div class="feed-controls">
             <div class="filter-info font-mono">
                 Showing: <span id="item-count">0</span> updates found
             </div>
             <div class="selection-help">
-                <span class="info-icon">💡</span> Click any card or check the box to select it for Tweeting.
+                <span class="info-icon">💡</span> Click checkmark overlay to select, card to read details.
+            </div>
+        </div>
+
+        <!-- Search and Filter Bar -->
+        <div class="search-filter-bar">
+            <div class="search-input-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="search-input" placeholder="Search technologies (e.g. FSR, FidelityFX)..." aria-label="Search release notes">
+            </div>
+            <div class="filter-categories" id="filter-categories">
+                <!-- Dynamic categories will be injected here -->
             </div>
         </div>
 
@@ -92,7 +120,10 @@
                     <span class="selection-count-badge font-mono" id="selection-count">0</span>
                     <span class="drawer-heading">Release Updates Selected</span>
                 </div>
-                <button id="clear-selection-btn" class="text-btn font-mono">Clear Selection</button>
+                <div class="drawer-actions">
+                    <button id="optimize-tweet-btn" class="text-btn font-mono" style="margin-right: 15px; color: var(--batman-gold);">Auto-Optimize (Fit 280)</button>
+                    <button id="clear-selection-btn" class="text-btn font-mono">Clear Selection</button>
+                </div>
             </div>
             
             <div class="drawer-body">

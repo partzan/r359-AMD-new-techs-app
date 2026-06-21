@@ -1,0 +1,68 @@
+GIT VS GITHUB GUIDE: LOCAL VERSION CONTROL AND CLOUD DEPLOYMENT
+================================================================
+
+This guide explains the difference between Git and GitHub, along with the step-by-step commands we ran to initialize your repository and push it online.
+
+----------------------------------------------------------------
+1. THE FUNDAMENTAL DIFFERENCE: GIT VS GITHUB
+----------------------------------------------------------------
+
+* GIT is a local software tool that runs on your computer. It tracks the changes you make to files and keeps a history of your snapshots (commits). It runs entirely offline on your system.
+* GITHUB is a cloud hosting service that stores your Git repositories online. It allows you to share your code, back it up, or collaborate with others over the internet.
+
+In short: Git is the tool; GitHub is the database in the cloud.
+
+----------------------------------------------------------------
+2. STEP-BY-STEP OPERATION LOG
+----------------------------------------------------------------
+
+STEP 1: Configured .gitignore (Git Operation)
+---------------------------------------------
+We created a '.gitignore' file in the root of the project to tell Git which files (like caches, temporary files, and local virtual environments) it should never track.
+
+STEP 2: Initialized the Local Repository (Git Operation)
+--------------------------------------------------------
+Command:
+    git init
+Explanation:
+    Creates a hidden '.git' directory inside your project folder. This initializes a local Git database and begins tracking version changes.
+
+STEP 3: Staged the Files (Git Operation)
+----------------------------------------
+Command:
+    git add .
+Explanation:
+    Tells Git to prepare all files (except those ignored by '.gitignore') for a snapshot. It places them in the "Staging Area".
+
+STEP 4: Committed the Files (Git Operation)
+-------------------------------------------
+Command:
+    git commit -m "Initial commit - AMD Gaming Technologies Release Notes Tracker Dashboard"
+Explanation:
+    Saves the staged files as a permanent snapshot (commit) in your local repository timeline. The '-m' flag attaches a short log message explaining the snapshot.
+
+STEP 5: Renamed the Default Branch (Git Operation)
+--------------------------------------------------
+Command:
+    git branch -M main
+Explanation:
+    Renames the default branch from 'master' to 'main' to match modern GitHub naming conventions.
+
+STEP 6: Created the Cloud Repository (GitHub Operation)
+-------------------------------------------------------
+Action:
+    Created a new repository named 'r359-AMD-new-techs-app' via the GitHub web interface. This reserved an empty directory and a cloud URL for your project.
+
+STEP 7: Linked Local to Cloud (Git Operation)
+---------------------------------------------
+Command:
+    git remote add origin https://github.com/partzan/r359-AMD-new-techs-app.git
+Explanation:
+    Links your local Git repository to your remote GitHub repository, giving the remote address the nickname 'origin'.
+
+STEP 8: Pushed the Code (Git Operation)
+---------------------------------------
+Command:
+    git push -u origin main
+Explanation:
+    Uploads (pushes) all your local commits from your local 'main' branch to the 'origin' remote repository on GitHub's servers. The '-u' flag links the branch permanently so that future pushes only require typing 'git push'.
